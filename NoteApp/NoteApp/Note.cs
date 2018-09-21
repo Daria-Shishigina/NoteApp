@@ -91,13 +91,13 @@ namespace NoteApp
             }
             set
             {
-               // if (value.Length > 0 && value.Length < 50)
+               // if (value. <= DataTime.Now )
                 {
                     _timeCreated = value;
                 }
                 else
                 {
-                  //  if (value.Length >= 50)
+                    //  if (value. > DataTime.Now )
 
                     {
                         throw new ArgumentException("Дата создания заметки не должна быть позже реального времени.");
@@ -119,13 +119,13 @@ namespace NoteApp
             }
             set
             {
-                // if (value.Length > 0 && value.Length < 50)
+                // if (value. <= DataTime.Now  && value. >= TimeCreateed )
                 {
                     _timeChanged = value;
                 }
                 else
                 {
-                    //  if (value.Length >= 50)
+                    // if (value. > DataTime.Now  && value. < TimeCreateed )
 
                     {
                         throw new ArgumentException("Время последнего игменения заметки не должна быть позже реального времени.");
