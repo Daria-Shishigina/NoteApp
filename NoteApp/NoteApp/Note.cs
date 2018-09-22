@@ -4,17 +4,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NoteApp
+
+
+namespace NoteApp 
 {
     /// <summary>
     /// Класс заметки.
     /// </summary>
-    public class Note
+    public class Note : ICloneable
     {
         private string _title = "Без названия";
         private NoteType _type;   
         private string _text;
         private DateTime _timeCreated;
+        private NoteType _noteType;
         private DateTime _timeChanged;
         
         /// <summary>
@@ -52,11 +55,33 @@ namespace NoteApp
             }
         }
 
-        
+
+        public NoteType NoteType
+        {
+            get
+            {
+                return _noteType;
+            }
+            set
+            {
+                if (value >= 0 )
+                {
+                    _noteType = value;
+                }
+                else
+                {
+                    if (value < 0 )
+                    {
+                        throw new ArgumentException(".");
+                    }
+                }
+            }
+        }
+
         /// <summary>
         /// Текст заметки.
         /// </summary>
-       
+
         public string Text
         {
             get
@@ -71,7 +96,7 @@ namespace NoteApp
                 }
                 else
                 {
-                    if (value.Length = 0) //???????????????????????????????????????
+                    if (value.Length <= 0) //???????????????????????????????????????
                     {
                         throw new ArgumentException("Текст заметки пуст.");
                     }
@@ -91,13 +116,13 @@ namespace NoteApp
             }
             set
             {
-               // if (value. <= DataTime.Now )
+                 if (TimeCreated <= DateTime.Now )
                 {
                     _timeCreated = value;
                 }
                 else
                 {
-                    //  if (value. > DataTime.Now )
+                      if (TimeCreated > DateTime.Now )
 
                     {
                         throw new ArgumentException("Дата создания заметки не должна быть позже реального времени.");
@@ -119,19 +144,31 @@ namespace NoteApp
             }
             set
             {
-                // if (value. <= DataTime.Now  && value. >= TimeCreateed )
+                 if (TimeChanged <= DateTime.Now  && TimeChanged >= TimeCreated )
                 {
                     _timeChanged = value;
                 }
                 else
                 {
-                    // if (value. > DataTime.Now  && value. < TimeCreateed )
+                     if (TimeChanged > DateTime.Now  && TimeChanged < TimeCreated )
 
                     {
                         throw new ArgumentException("Время последнего игменения заметки не должна быть позже реального времени.");
                     }
                 }
             }
+        }
+
+     public object Clone()
+
+        {
+            var newNote = new Note(TimeCreated);
+            newNote.Title = _title;
+            newNote.NoteType = _noteType;
+            newNote.Text = _text;
+            newNote.TimeCreated = _timeCreated;
+            newNote.TimeChanged = _timeChanged;
+            return newNote;
         }
 
 

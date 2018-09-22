@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 
 namespace NoteApp
 {
+
+/// <summary>
+/// Все заметки список
+/// </summary>
     public class Project
     {
         public List<Note> Notes = new List<Note>();
