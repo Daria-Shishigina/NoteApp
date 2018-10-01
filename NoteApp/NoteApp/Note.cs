@@ -64,15 +64,16 @@ namespace NoteApp
             }
             set
             {
-                if (value >= 0 )
+                if (value >= 0)
+              
                 {
                     _noteType = value;
                 }
                 else
                 {
-                    if (value < 0 )
+                    if (value < 0)
                     {
-                        throw new ArgumentException(".");
+                        throw new ArgumentException("Выбор из списка");
                     }
                 }
             }
@@ -96,7 +97,7 @@ namespace NoteApp
                 }
                 else
                 {
-                    if (value.Length <= 0) //???????????????????????????????????????
+                    if (value.Length <= 0) 
                     {
                         throw new ArgumentException("Текст заметки пуст.");
                     }
