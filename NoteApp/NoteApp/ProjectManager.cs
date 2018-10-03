@@ -3,6 +3,9 @@ using Newtonsoft.Json;
 
 namespace NoteApp
 {
+    /// <summary>
+    /// Сохраняет и загружает проект в файл.
+    /// </summary>
     public class ProjectManager
     {
         /// <summary>
@@ -20,7 +23,7 @@ namespace NoteApp
             using (JsonWriter writer = new JsonTextWriter(sw))
             {
                 //Вызываем сериализацию и передаем объект, который хотим сериализовать
-                serializer.Serialize(writer, (Project)listNotes);
+                serializer.Serialize(writer, listNotes);
             }
         }
 
@@ -33,16 +36,16 @@ namespace NoteApp
         {
             Project notes = new Project();
 
-            //Создаём экземпляр сериализатора.
+            //Создаём экземпляр сериализатора
 
             JsonSerializer serializer = new JsonSerializer();
 
-            //Открываем поток для чтения из файла с указанием пути.
+            //Открываем поток для чтения из файла с указанием пути
 
             using (StreamReader sr = new StreamReader(fileName))
             using (JsonReader reader = new JsonTextReader(sr))
             {
-                //Вызываем десериализацию и явно преобразуем результат в целевой тип данных.
+                //Вызываем десериализацию и явно преобразуем результат в целевой тип данных
                 var noteList = (Project)serializer.Deserialize<Project>(reader);
                 notes = noteList;
             }
