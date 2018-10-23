@@ -67,7 +67,7 @@
             this.NotesListBox.FormattingEnabled = true;
             this.NotesListBox.Location = new System.Drawing.Point(12, 30);
             this.NotesListBox.Name = "NotesListBox";
-            this.NotesListBox.Size = new System.Drawing.Size(238, 316);
+            this.NotesListBox.Size = new System.Drawing.Size(224, 329);
             this.NotesListBox.TabIndex = 0;
             this.NotesListBox.SelectedIndexChanged += new System.EventHandler(this.NotesListBox_SelectedIndexChanged);
             // 
@@ -78,7 +78,7 @@
             this.TypeComboBox.FormattingEnabled = true;
             this.TypeComboBox.Location = new System.Drawing.Point(89, 3);
             this.TypeComboBox.Name = "TypeComboBox";
-            this.TypeComboBox.Size = new System.Drawing.Size(161, 21);
+            this.TypeComboBox.Size = new System.Drawing.Size(147, 21);
             this.TypeComboBox.TabIndex = 4;
             this.TypeComboBox.SelectedIndexChanged += new System.EventHandler(this.TypeComboBox_SelectedIndexChanged);
             // 
@@ -100,7 +100,7 @@
             this.TextTextBox.Multiline = true;
             this.TextTextBox.Name = "TextTextBox";
             this.TextTextBox.ReadOnly = true;
-            this.TextTextBox.Size = new System.Drawing.Size(441, 316);
+            this.TextTextBox.Size = new System.Drawing.Size(468, 316);
             this.TextTextBox.TabIndex = 6;
             // 
             // menuStrip1
@@ -244,7 +244,7 @@
             this.ClearButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClearButton.FlatAppearance.BorderSize = 0;
             this.ClearButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ClearButton.Location = new System.Drawing.Point(79, 360);
+            this.ClearButton.Location = new System.Drawing.Point(79, 365);
             this.ClearButton.Name = "ClearButton";
             this.ClearButton.Size = new System.Drawing.Size(30, 30);
             this.ClearButton.TabIndex = 3;
@@ -258,7 +258,7 @@
             this.EditButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.EditButton.FlatAppearance.BorderSize = 0;
             this.EditButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.EditButton.Location = new System.Drawing.Point(43, 360);
+            this.EditButton.Location = new System.Drawing.Point(43, 365);
             this.EditButton.Name = "EditButton";
             this.EditButton.Size = new System.Drawing.Size(30, 30);
             this.EditButton.TabIndex = 2;
@@ -273,7 +273,7 @@
             this.AddbButton.FlatAppearance.BorderColor = System.Drawing.SystemColors.Control;
             this.AddbButton.FlatAppearance.BorderSize = 0;
             this.AddbButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.AddbButton.Location = new System.Drawing.Point(7, 360);
+            this.AddbButton.Location = new System.Drawing.Point(7, 365);
             this.AddbButton.Name = "AddbButton";
             this.AddbButton.Size = new System.Drawing.Size(30, 30);
             this.AddbButton.TabIndex = 1;
@@ -306,7 +306,7 @@
             this.splitContainer1.Panel2.Controls.Add(this.NoteCategorylabel);
             this.splitContainer1.Panel2.Controls.Add(this.Createdlabel);
             this.splitContainer1.Size = new System.Drawing.Size(724, 420);
-            this.splitContainer1.SplitterDistance = 266;
+            this.splitContainer1.SplitterDistance = 239;
             this.splitContainer1.TabIndex = 15;
             // 
             // MainForm
