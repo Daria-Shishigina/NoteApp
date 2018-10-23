@@ -16,7 +16,7 @@ namespace NoteApp
         Health_and_sport, 
         People, 
         Finance,
-        Documants,
+        Documents,
         Miscellaneous
     
     }

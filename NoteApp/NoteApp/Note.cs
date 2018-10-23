@@ -44,6 +44,7 @@ namespace NoteApp
                 if (value.Length>0 && value.Length<50)
                 {
                     _title = value;
+                    TimeChanged = DateTime.Now;
                 }
                 else
                 {
@@ -68,13 +69,13 @@ namespace NoteApp
               
                 {
                     _noteType = value;
+                    TimeChanged = DateTime.Now;
                 }
                 else
                 {
-                    if (value < 0)
-                    {
+                    
                         throw new ArgumentException("Выбор из списка");
-                    }
+                    
                 }
             }
         }
@@ -94,6 +95,7 @@ namespace NoteApp
                 if (value.Length > 0)
                 {
                     _text = value;
+                    TimeChanged = DateTime.Now;
                 }
                 else
                 {
