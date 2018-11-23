@@ -136,7 +136,7 @@ namespace NoteAppUI
         {
             Titlelabel.Text = _noteslist.Notes[NotesListBox.SelectedIndex].Title;
             NoteCategorylabel.Text = _noteslist.Notes[NotesListBox.SelectedIndex].NoteType.ToString();
-            CreateddateTime.Value = _noteslist.Notes[NotesListBox.SelectedIndex].TimeCreated;
+            //CreateddateTime.Value = _noteslist.Notes[NotesListBox.SelectedIndex].TimeCreated;
             //ChangeddateTime.Value = _noteslist.Notes[NotesListBox.SelectedIndex].TimeChanged; //?????????????????????????????????????????????????????????????
             TextTextBox.Text = _noteslist.Notes[NotesListBox.SelectedIndex].Text;
         }
@@ -146,7 +146,7 @@ namespace NoteAppUI
 
 
         /// <summary>
-        /// ЧТО ДОЛЖНО БЫТЬ СО СПИСКОМ ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+        /// 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>

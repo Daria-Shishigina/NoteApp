@@ -107,7 +107,6 @@ namespace NoteAppUI
         }
 
 
-        // НЕ ДАЕТ СОЗДАТЬ НОВУЮ ЗАМЕТКУ (НЕ ДАЮТ ОГРАНИЧЕНИЯ (УБРАТЬ -РАБОТАЕТ ))
 
         private void TextTextBox_TextChanged(object sender, EventArgs e)
         {

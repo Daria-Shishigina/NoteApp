@@ -13,8 +13,7 @@ namespace NoteApp
     /// </summary>
     public class Note : ICloneable
     {
-        private string _title = "Без названия";
-        private NoteType _type;   
+        private string _title = "Без названия";  
         private string _text;
         private DateTime _timeCreated;
         private NoteType _noteType;
@@ -26,10 +25,15 @@ namespace NoteApp
         /// <param name="dateTime">Время создания.</param>
         public Note(DateTime dateTime)
         {
-            this._timeCreated = dateTime;
-            this._timeChanged = dateTime;
+            TimeCreated = dateTime;
+            TimeChanged = dateTime;
+            //this._timeCreated = dateTime;
+            //this._timeChanged = dateTime;
         }
-        
+        public Note()
+        {
+
+        }
         /// <summary>
         /// Заголовок.
         /// </summary>
@@ -173,12 +177,5 @@ namespace NoteApp
             newNote.TimeChanged = _timeChanged;
             return newNote;
         }
-
-
-
-
-
-
-
     }
 }
