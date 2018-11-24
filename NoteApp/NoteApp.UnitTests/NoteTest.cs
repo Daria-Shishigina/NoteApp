@@ -116,9 +116,10 @@ namespace NoteApp.UnitTests
         [Test(Description = "Позитивный тест TimeCreated")]
         public void TestNoteCreatedGet_CorrectValue()
         {
-            var note = new Note();
+            var dateNow = DateTime.Now;
+            var note = new Note(dateNow);
             var actual = note.TimeCreated;
-            Assert.AreEqual(DateTime.Now, actual, " TimeCreated возвращает неправильное значение");
+            Assert.AreEqual(dateNow, actual, " TimeCreated возвращает неправильное значение");
         }
 
 
@@ -127,9 +128,10 @@ namespace NoteApp.UnitTests
         [Test(Description = "Позитивный тест  TimeChanged")]
         public void TestNoteChangedGet_CorrectValue()
         {
-            var note = new Note();
+            var dateNow = DateTime.Now;
+            var note = new Note(dateNow);
             var actual = note.TimeChanged;
-            var expected = DateTime.Now;
+            var expected = dateNow;
             Assert.AreEqual(expected, actual, "TimeChanged возвращает неправильное значение");
 
         }
@@ -141,9 +143,9 @@ namespace NoteApp.UnitTests
         [Test(Description = "Дата изменения больше текущей даты")]
         public void TestNoteChangedSet_LongerCurrentDate()
         {
-         
-            var note = new Note();
-            var time = DateTime.Now.AddDays(100);
+            var time = DateTime.Now;
+            var note = new Note(DateTime.Now);
+            time = time.AddDays(100);
             Assert.Throws<ArgumentException>(() => { note.TimeChanged = time; },"Должно возникать исключение");
         }
 
@@ -154,29 +156,22 @@ namespace NoteApp.UnitTests
         [Test(Description = "Дата создания больше текущей дата")]
         public void TestNoteCreatedSet_LongerCurrentDate()
         {
-
-            var note = new Note();
-            var time = DateTime.Now.AddDays(100);
+            var time = DateTime.Now;
+            var note = new Note(DateTime.Now);
+            time=time.AddYears(1000);
             Assert.Throws<ArgumentException>(() => { note.TimeCreated = time; },"Должно возникать исключение");
         }
 
 
 
-        //[Test(Description = "Дата изменения больше  даты создания")]
-        //public void TestNoteChangedSet_()
-        //{
-
-        //    var note = new Note(DateTime.Now);
-        //    var time = note.TimeCreated;
-        //    Assert.Throws<ArgumentException>(() => { note.TimeChanged = time; },"Должно возникать исключение");
-        //}
-
-
-
-
-
-
-
+        [Test(Description = "Дата изменения больше  даты создания")]
+        public void TestNoteChangedSet_()
+        {
+            var time = DateTime.Now;
+            var note = new Note(time);
+            time = time.AddDays(-100);
+            Assert.Throws<ArgumentException>(() => { note.TimeChanged = time; },"Должно возникать исключение");
+        }
 
     }
 }
