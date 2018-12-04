@@ -43,8 +43,9 @@ namespace NoteAppUI
                 TitleTextBox.Text = _note.Title;
                 TextTextBox.Text = _note.Text;
                 CreategDateTimePicker.Value = _note.TimeCreated;
+                ChangedDateTimePicker.Value = _note.TimeChanged; 
                 TypeComboBox.SelectedIndex = (int)_note.NoteType;
-                //  _note.Title = value.Title;
+          
             }
         }
         /// <summary>
@@ -54,10 +55,17 @@ namespace NoteAppUI
         /// <param name="e"></param>
         private void SaveButton_Click(object sender, EventArgs e)
         {
+
+
+            
             Note note = new Note(DateTime.Now);
             note.Title = TitleTextBox.Text;
             note.NoteType = (NoteType)TypeComboBox.SelectedIndex;
             note.Text = TextTextBox.Text;
+    
+
+
+
             _note = note;
             this.DialogResult = DialogResult.OK;
             this.Close();  
@@ -77,16 +85,6 @@ namespace NoteAppUI
                 MessageBox.Show(exception.Message);
                 TitleTextBox.BackColor = Color.LightSalmon;
             }
-
-            ////string text = TitleTextBox.Text;
-            ////if (text.Length < 50 && text.Length > 0)
-            ////{
-            ////        TitleTextBox.BackColor = Color.White;
-            ////    }
-            ////    else
-            ////    {
-            ////        TitleTextBox.BackColor = Color.LightSalmon;
-            ////    }
 
         }
         private void NotesForm_Load(object sender, EventArgs e)

@@ -165,7 +165,7 @@ namespace NoteApp.UnitTests
 
 
         [Test(Description = "Дата изменения больше  даты создания")]
-        public void TestNoteChangedSet_()
+        public void TestNoteChangedSet()
         {
             var time = DateTime.Now;
             var note = new Note(time);

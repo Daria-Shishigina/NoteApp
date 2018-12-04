@@ -15,43 +15,43 @@ namespace NoteAppUI
 {
     public partial class MainForm : Form
     {
-        private Project _noteslist = new Project();
+        private Project _project = new Project();
 
         public MainForm()
         {
             InitializeComponent();
-            
+
+
+            TypeComboBox.Items.Add("All");
+
+            TypeComboBox.SelectedIndex = 0;
             foreach (var e in Enum.GetValues(typeof(NoteType)))
             {
                 TypeComboBox.Items.Add(e);
             }
 
-            //TypeComboBox.Items.Add(NoteType.Work);
-            //TypeComboBox.Items.Add(NoteType.Home);
-            //TypeComboBox.Items.Add(NoteType.Health_and_sport);
-            //TypeComboBox.Items.Add(NoteType.People);
-            //TypeComboBox.Items.Add(NoteType.Finance);
-            //TypeComboBox.Items.Add(NoteType.Documents);
-            //TypeComboBox.Items.Add(NoteType.Miscellaneous);
+
+
+            _project = ProjectManager.LoadFromFile("c:\\Users\\User\\Desktop\\txt.json");
             AllNotes();
         }
-
+  
         private void AllNotes()
         {
-            _noteslist = ProjectManager.LoadFromFile("c:\\Users\\User\\Desktop\\txt.json");
+           
+
+
             NotesListBox.Items.Clear();
-            foreach (var note in _noteslist.Notes)
-            {
-                NotesListBox.Items.Add(note.Title);
+            _project.Sort();
 
-            }
-
+                foreach (var note in _project.Notes)
+                {
+                    NotesListBox.Items.Add(note.Title);
+                }
         }
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-
-            // _noteslist = ProjectManager.LoadFromFile("c:\\Users\\User\\Desktop\\txt.json");
 
         }
 
@@ -69,40 +69,34 @@ namespace NoteAppUI
             {
 
                 var note = notes.Note;
-                _noteslist.Notes.Add(note);
+                _project.Notes.Add(note);
                 NotesListBox.Items.Add(note.Title);
-                ProjectManager.SaveToFile(_noteslist, "c:\\Users\\User\\Desktop\\txt.json");
+                ProjectManager.SaveToFile(_project, "c:\\Users\\User\\Desktop\\txt.json");
+                AllNotes();
 
             }
-
-
         }
 
-
-
-
-
-
-
         /// <summary>
-        /// Редактировать заметку (НЕ РАБОТАЕТ ) !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        /// Редактировать заметку 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void EditButton_Click(object sender, EventArgs e)
-        {
-
-            
+        {       
             var notes = new NotesForm();
-            notes.Note = _noteslist.Notes[NotesListBox.SelectedIndex];
+            notes.Note = _project.Notes[NotesListBox.SelectedIndex];
             if (notes.ShowDialog() == DialogResult.OK)
             {
-                _noteslist.Notes[NotesListBox.SelectedIndex] = notes.Note;
-                ProjectManager.SaveToFile(_noteslist, "c:\\Users\\User\\Desktop\\txt.json");
+                _project.Notes[NotesListBox.SelectedIndex] = notes.Note;
+                ProjectManager.SaveToFile(_project, "c:\\Users\\User\\Desktop\\txt.json");
                 AllNotes();
             }
+            else
+            {
+                    AllNotes();    
+            }
         }
-
 
         /// <summary>
         /// Удалить заметку
@@ -115,14 +109,12 @@ namespace NoteAppUI
 
             if (MessageBox.Show("Удалить?", "Удаление", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                _noteslist.Notes.Remove(_noteslist.Notes[NotesListBox.SelectedIndex]);
+                _project.Notes.Remove(_project.Notes[NotesListBox.SelectedIndex]);
                 NotesListBox.Items.Remove(NotesListBox.SelectedIndex);
 
-                ProjectManager.SaveToFile(_noteslist, "c:\\Users\\User\\Desktop\\txt.json");
+                ProjectManager.SaveToFile(_project, "c:\\Users\\User\\Desktop\\txt.json");
                 NotesListBox.Items.Clear();
                 AllNotes();
-
-              
             }
         }
 
@@ -134,33 +126,40 @@ namespace NoteAppUI
 
         private void NotesListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Titlelabel.Text = _noteslist.Notes[NotesListBox.SelectedIndex].Title;
-            NoteCategorylabel.Text = _noteslist.Notes[NotesListBox.SelectedIndex].NoteType.ToString();
-            //CreateddateTime.Value = _noteslist.Notes[NotesListBox.SelectedIndex].TimeCreated;
-            //ChangeddateTime.Value = _noteslist.Notes[NotesListBox.SelectedIndex].TimeChanged; //?????????????????????????????????????????????????????????????
-            TextTextBox.Text = _noteslist.Notes[NotesListBox.SelectedIndex].Text;
+            Titlelabel.Text = _project.Notes[NotesListBox.SelectedIndex].Title;
+            NoteCategorylabel.Text = _project.Notes[NotesListBox.SelectedIndex].NoteType.ToString();
+            CreateddateTime.Value = _project.Notes[NotesListBox.SelectedIndex].TimeCreated;
+            ChangeddateTime.Value = _project.Notes[NotesListBox.SelectedIndex].TimeChanged; 
+            TextTextBox.Text = _project.Notes[NotesListBox.SelectedIndex].Text;
         }
 
-
-
-
-
         /// <summary>
-        /// 
+        ///  сортировка категорий
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void TypeComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
+           
+            
+            
+            if (TypeComboBox.SelectedItem.ToString() == "All")
+            {
+                AllNotes();
+            }
+            else
+            {
+                NoteType selectedNoteType;
+                selectedNoteType = (NoteType)TypeComboBox.SelectedItem;
+                var findedNotes = _project.Sort(selectedNoteType);
+                NotesListBox.Items.Clear();
+                foreach (Note note in findedNotes)
+                {
+                    NotesListBox.Items.Add(note.Title);
+                }
+            }
 
-            NoteType selectedNoteType;
-            selectedNoteType = (NoteType)TypeComboBox.SelectedItem;
-            //.NoteType = (NoteType)TypeComboBox.SelectedIndex; //???????????????????????????????????????
         }
-
-
-
-
 
 
         /// <summary>

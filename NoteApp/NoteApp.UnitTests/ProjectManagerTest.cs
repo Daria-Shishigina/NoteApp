@@ -24,8 +24,7 @@ namespace NoteApp.UnitTests
             Assert.AreEqual(expected.Notes.Count, actual.Notes.Count, "Different count of notes in project");
 
             Assert.AreEqual(expected.Notes[0].Text, actual.Notes[0].Text, "Сериализация работает неверно!");
-            //Assert.AreEqual(expected.Notes[0].Title, actual.Notes[0].Title, "Сериализация работает неверно!");
-
+          
         }
 
 

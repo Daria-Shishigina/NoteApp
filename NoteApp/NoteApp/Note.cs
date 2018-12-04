@@ -48,7 +48,7 @@ namespace NoteApp
                 if (value.Length>0 && value.Length<50)
                 {
                     _title = value;
-                    TimeChanged = DateTime.Now;
+                    //TimeChanged = DateTime.Now;
                 }
                 else
                 {
@@ -73,7 +73,7 @@ namespace NoteApp
               
                 {
                     _noteType = value;
-                    TimeChanged = DateTime.Now;
+                    //TimeChanged = DateTime.Now;
                 }
                 else
                 {
@@ -99,7 +99,7 @@ namespace NoteApp
                 if (value.Length > 0)
                 {
                     _text = value;
-                    TimeChanged = DateTime.Now;
+                   // TimeChanged = DateTime.Now;
                 }
                 else
                 {
@@ -151,13 +151,13 @@ namespace NoteApp
             }
             set
             {
-                 if (value <= DateTime.Now  && value >= TimeCreated )
+                if (value <= DateTime.Now && value >= TimeCreated)
                 {
                     _timeChanged = value;
                 }
                 else
                 {
-                     if (value > DateTime.Now  || value < TimeCreated )
+                    if (value > DateTime.Now || value < TimeCreated)
 
                     {
                         throw new ArgumentException("Время последнего игменения заметки не должна быть позже реального времени.");
@@ -166,7 +166,7 @@ namespace NoteApp
             }
         }
 
-     public object Clone()
+        public object Clone()
 
         {
             var newNote = new Note(TimeCreated);
