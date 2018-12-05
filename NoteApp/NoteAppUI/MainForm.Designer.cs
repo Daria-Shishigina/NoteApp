@@ -67,7 +67,7 @@
             this.NotesListBox.FormattingEnabled = true;
             this.NotesListBox.Location = new System.Drawing.Point(12, 30);
             this.NotesListBox.Name = "NotesListBox";
-            this.NotesListBox.Size = new System.Drawing.Size(224, 329);
+            this.NotesListBox.Size = new System.Drawing.Size(207, 329);
             this.NotesListBox.TabIndex = 0;
             this.NotesListBox.SelectedIndexChanged += new System.EventHandler(this.NotesListBox_SelectedIndexChanged);
             // 
@@ -78,7 +78,7 @@
             this.TypeComboBox.FormattingEnabled = true;
             this.TypeComboBox.Location = new System.Drawing.Point(89, 3);
             this.TypeComboBox.Name = "TypeComboBox";
-            this.TypeComboBox.Size = new System.Drawing.Size(147, 21);
+            this.TypeComboBox.Size = new System.Drawing.Size(130, 21);
             this.TypeComboBox.TabIndex = 4;
             this.TypeComboBox.SelectedIndexChanged += new System.EventHandler(this.TypeComboBox_SelectedIndexChanged);
             // 
@@ -100,7 +100,7 @@
             this.TextTextBox.Multiline = true;
             this.TextTextBox.Name = "TextTextBox";
             this.TextTextBox.ReadOnly = true;
-            this.TextTextBox.Size = new System.Drawing.Size(468, 316);
+            this.TextTextBox.Size = new System.Drawing.Size(436, 316);
             this.TextTextBox.TabIndex = 6;
             // 
             // menuStrip1
@@ -111,7 +111,7 @@
             this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(724, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(675, 24);
             this.menuStrip1.TabIndex = 7;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -305,13 +305,13 @@
             this.splitContainer1.Panel2.Controls.Add(this.Categorylable);
             this.splitContainer1.Panel2.Controls.Add(this.NoteCategorylabel);
             this.splitContainer1.Panel2.Controls.Add(this.Createdlabel);
-            this.splitContainer1.Size = new System.Drawing.Size(724, 420);
-            this.splitContainer1.SplitterDistance = 239;
+            this.splitContainer1.Size = new System.Drawing.Size(675, 420);
+            this.splitContainer1.SplitterDistance = 222;
             this.splitContainer1.TabIndex = 15;
             // 
             // MainForm
             // 
-            this.ClientSize = new System.Drawing.Size(724, 444);
+            this.ClientSize = new System.Drawing.Size(675, 444);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;

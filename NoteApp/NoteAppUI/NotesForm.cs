@@ -14,7 +14,7 @@ namespace NoteAppUI
 
     public partial class NotesForm : Form
     {
-        public Note _note ;
+        public Note _note;
 
         public NotesForm()
         {
@@ -43,9 +43,9 @@ namespace NoteAppUI
                 TitleTextBox.Text = _note.Title;
                 TextTextBox.Text = _note.Text;
                 CreategDateTimePicker.Value = _note.TimeCreated;
-                ChangedDateTimePicker.Value = _note.TimeChanged; 
+                ChangedDateTimePicker.Value = _note.TimeChanged;
                 TypeComboBox.SelectedIndex = (int)_note.NoteType;
-          
+
             }
         }
         /// <summary>
@@ -55,24 +55,24 @@ namespace NoteAppUI
         /// <param name="e"></param>
         private void SaveButton_Click(object sender, EventArgs e)
         {
-
-
-            
-            Note note = new Note(DateTime.Now);
+            Note note = new Note();
             note.Title = TitleTextBox.Text;
             note.NoteType = (NoteType)TypeComboBox.SelectedIndex;
             note.Text = TextTextBox.Text;
-    
+
+            note.TimeCreated = CreategDateTimePicker.Value;
+            note.TimeChanged = DateTime.Now;
+
 
 
 
             _note = note;
             this.DialogResult = DialogResult.OK;
-            this.Close();  
+            this.Close();
         }
 
 
-        
+
         private void TitleTextBox_TextChanged(object sender, EventArgs e)
         {
             try
@@ -136,7 +136,8 @@ namespace NoteAppUI
                 TypeComboBox.BackColor = Color.LightSalmon;
             }
         }
-        
+
     }
 }
+
 

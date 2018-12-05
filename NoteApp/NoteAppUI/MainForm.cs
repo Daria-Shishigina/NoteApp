@@ -16,40 +16,32 @@ namespace NoteAppUI
     public partial class MainForm : Form
     {
         private Project _project = new Project();
+        private readonly string _address = Environment.GetFolderPath(Environment.SpecialFolder.Personal)+@"\txt.json";
 
         public MainForm()
         {
             InitializeComponent();
-
-
             TypeComboBox.Items.Add("All");
-
             TypeComboBox.SelectedIndex = 0;
             foreach (var e in Enum.GetValues(typeof(NoteType)))
             {
                 TypeComboBox.Items.Add(e);
             }
-
-
-
-            _project = ProjectManager.LoadFromFile("c:\\Users\\User\\Desktop\\txt.json");
+            _project = ProjectManager.LoadFromFile(_address);
+            //_project = ProjectManager.LoadFromFile("c:\\Users\\User\\Desktop\\txt.json");
             AllNotes();
         }
-  
+
         private void AllNotes()
         {
-           
-
-
             NotesListBox.Items.Clear();
             _project.Sort();
 
-                foreach (var note in _project.Notes)
-                {
-                    NotesListBox.Items.Add(note.Title);
-                }
+            foreach (var note in _project.Notes)
+            {
+                NotesListBox.Items.Add(note.Title);
+            }
         }
-
         private void MainForm_Load(object sender, EventArgs e)
         {
 
@@ -67,13 +59,11 @@ namespace NoteAppUI
             notes.Note = new Note(DateTime.Now);
             if (notes.ShowDialog() == DialogResult.OK)
             {
-
                 var note = notes.Note;
                 _project.Notes.Add(note);
                 NotesListBox.Items.Add(note.Title);
-                ProjectManager.SaveToFile(_project, "c:\\Users\\User\\Desktop\\txt.json");
+                ProjectManager.SaveToFile(_project, _address); //"c:\\Users\\User\\Desktop\\txt.json"); //Environment
                 AllNotes();
-
             }
         }
 
@@ -83,18 +73,18 @@ namespace NoteAppUI
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void EditButton_Click(object sender, EventArgs e)
-        {       
+        {
             var notes = new NotesForm();
             notes.Note = _project.Notes[NotesListBox.SelectedIndex];
             if (notes.ShowDialog() == DialogResult.OK)
             {
                 _project.Notes[NotesListBox.SelectedIndex] = notes.Note;
-                ProjectManager.SaveToFile(_project, "c:\\Users\\User\\Desktop\\txt.json");
+                ProjectManager.SaveToFile(_project, _address); //"c:\\Users\\User\\Desktop\\txt.json");
                 AllNotes();
             }
             else
             {
-                    AllNotes();    
+                AllNotes();
             }
         }
 
@@ -112,7 +102,7 @@ namespace NoteAppUI
                 _project.Notes.Remove(_project.Notes[NotesListBox.SelectedIndex]);
                 NotesListBox.Items.Remove(NotesListBox.SelectedIndex);
 
-                ProjectManager.SaveToFile(_project, "c:\\Users\\User\\Desktop\\txt.json");
+                ProjectManager.SaveToFile(_project, _address); // "c:\\Users\\User\\Desktop\\txt.json");
                 NotesListBox.Items.Clear();
                 AllNotes();
             }
@@ -129,7 +119,7 @@ namespace NoteAppUI
             Titlelabel.Text = _project.Notes[NotesListBox.SelectedIndex].Title;
             NoteCategorylabel.Text = _project.Notes[NotesListBox.SelectedIndex].NoteType.ToString();
             CreateddateTime.Value = _project.Notes[NotesListBox.SelectedIndex].TimeCreated;
-            ChangeddateTime.Value = _project.Notes[NotesListBox.SelectedIndex].TimeChanged; 
+            ChangeddateTime.Value = _project.Notes[NotesListBox.SelectedIndex].TimeChanged;
             TextTextBox.Text = _project.Notes[NotesListBox.SelectedIndex].Text;
         }
 
@@ -140,9 +130,6 @@ namespace NoteAppUI
         /// <param name="e"></param>
         private void TypeComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-           
-            
-            
             if (TypeComboBox.SelectedItem.ToString() == "All")
             {
                 AllNotes();
@@ -171,7 +158,6 @@ namespace NoteAppUI
         {
             var form1 = new Form1();
             form1.ShowDialog();
-
         }
 
         private void Titlelabel_Click(object sender, EventArgs e)
